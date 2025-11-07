@@ -9,28 +9,27 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
+    private const USER_REFERENCE = 'User';
+
     public function __construct(private readonly UserPasswordHasherInterface $passwordHasher) {}
 
-    private const USER_REFERENCE = 'User';
-    /**
-     * @throws \Exception
-     */
-    public function load(ObjectManager $manager):void
+    public function load(ObjectManager $manager): void
     {
-        $mailsUser = ["client1@orange.fr", "client2@orange.fr", "client3@orange.fr", "client4@orange.fr"];
-        $prenomsUser = ["Jean", "Clara", "Mel", "Louis"];
-        $nomsUser = ["Jardin", "Ciel", "Etoile", "Terre"];
-        $rolesUser = ["admin", "client", "client", "client"];
-        $passwordsUser = ["123", "abc", "def", "456"];
+        $users = [
+            ['email' => "client1@orange.fr", 'first_name' => "Jean", 'last_name' => "Jardin", 'roles' => 'admin', 'password' => "123"],
+            ['email' => "client2@orange.fr", 'first_name' => "Clara", 'last_name' => "Ciel", 'roles' => 'user', 'password' => "abc"],
+            ['email' => "client3@orange.fr", 'first_name' => "Mel", 'last_name' => "Etoile", 'roles' => 'user', 'password' => "def"],
+            ['email' => "client4@orange.fr", 'first_name' => "Louis", 'last_name' => "Terre", 'roles' => 'admin', 'password' => "456"],
+        ];
 
-        foreach ($mailsUser as $key => $mailUser) {
+        foreach ($users as $key => $us) {
             $user = new User();
-            $user->setEmail($mailUser);
-            $user->setFirstName($prenomsUser[$key]);
-            $user->setLastName($nomsUser[$key]);
-            $user->setRoles($rolesUser[$key]);
+            $user->setEmail($us['email']);
+            $user->setFirstName($us['first_name']);
+            $user->setLastName($us['last_name']);
+            $user->setRoles($us['roles']);
             $user->setPassword(
-                $this->passwordHasher->hashPassword($user, $passwordsUser[$key])
+                $this->passwordHasher->hashPassword($user, $us['password'])
             );
 
             $manager->persist($user);

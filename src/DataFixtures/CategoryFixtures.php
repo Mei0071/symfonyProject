@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\DataFixtures;
 
 use App\Entity\Category;
@@ -9,18 +8,20 @@ use Doctrine\Persistence\ObjectManager;
 
 class CategoryFixtures extends Fixture
 {
-
     private const CATEGORY_REFERENCE = 'Category';
 
     public function load(ObjectManager $manager): void
     {
-        $names=["violon","guitare","batterie"];
-        $descriptions=["Type d'instruùent à corde","Type d'instrument à corde","Type d'instruùent à percussion"];
+        $categories = [
+            ['name' => "Violon", 'description' => "Type d'instrument à corde"],
+            ['name' => "Guitare", 'description' => "Type d'instrument à corde"],
+            ['name' => "Batterie", 'description' => "Type d'instrument à percussion"],
+        ];
 
-        foreach ($names as $key => $name) {
+        foreach ($categories as $key => $data) {
             $category = new Category();
-            $category->setName($name);
-            $category->setDescription($descriptions[$key]);
+            $category->setName($data['name']);
+            $category->setDescription($data['description']);
 
             $manager->persist($category);
 
