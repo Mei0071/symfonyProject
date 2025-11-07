@@ -42,7 +42,6 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
             $order->setStatus($data['status']);
             $order->setCreateAt($data['created_at']);
 
-            /** @var User $user */
             $user = $this->getReference($data['user_ref'], User::class);
             $order->setUser($user);
 
