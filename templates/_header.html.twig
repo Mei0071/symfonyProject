@@ -1,5 +1,5 @@
 <header>
-    <img src="{{ asset('assets/img/imageHeader.jpg') }}" alt="image d'instruments">
+    <img id="logo" src="{{ asset('assets/img/imageHeader.jpg') }}" alt="image d'instruments">
 
     <div class="header-content">
         <h1>NOM SOCIETE</h1>
@@ -9,5 +9,9 @@
             <a href="{{ path('product_corde') }}">Intsurments à corde</a>
             <a href="{{ path('product_percussion') }}">Percussions</a>
         </nav>
+    </div>
+    <div class="right-header">
+        <p>Connexion</p>
+        <img id="panier" src="{{ asset('assets/img/imageHeader.jpg')}}" alt="image panier">
     </div>
 </header>

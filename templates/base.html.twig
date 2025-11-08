@@ -3,11 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
-        <link href={{ asset('styles/app.css') }} rel="stylesheet" type="text/css">
+        <link href={{ asset('styles/header_footer.css') }} rel="stylesheet" type="text/css">
     </head>
     <body>
-        {% include "_header.html.twig" %}
-        {% block body %}{% endblock %}
-        {% include "_footer.html.twig" %}
+        <div class="page">
+            {% include "_header.html.twig" %}
+            <div class="content">
+                {% block body %}{% endblock %}
+            </div>
+            {% include "_footer.html.twig" %}
+        </div>
+
     </body>
 </html>

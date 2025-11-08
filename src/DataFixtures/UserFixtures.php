@@ -16,10 +16,10 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $users = [
-            ['email' => "client1@orange.fr", 'first_name' => "Jean", 'last_name' => "Jardin", 'roles' => 'admin', 'password' => "123"],
-            ['email' => "client2@orange.fr", 'first_name' => "Clara", 'last_name' => "Ciel", 'roles' => 'user', 'password' => "abc"],
-            ['email' => "client3@orange.fr", 'first_name' => "Mel", 'last_name' => "Etoile", 'roles' => 'user', 'password' => "def"],
-            ['email' => "client4@orange.fr", 'first_name' => "Louis", 'last_name' => "Terre", 'roles' => 'admin', 'password' => "456"],
+            ['email' => "client1@orange.fr", 'first_name' => "Jean", 'last_name' => "Jardin", 'roles' => ['ROLE_ADMIN'], 'password' => "123"],
+            ['email' => "client2@orange.fr", 'first_name' => "Clara", 'last_name' => "Ciel", 'roles' => ['ROLE_USER'], 'password' => "abc"],
+            ['email' => "client3@orange.fr", 'first_name' => "Mel", 'last_name' => "Etoile", 'roles' => ['ROLE_USER'], 'password' => "def"],
+            ['email' => "client4@orange.fr", 'first_name' => "Louis", 'last_name' => "Terre", 'roles' => ['ROLE_ADMIN'], 'password' => "456"],
         ];
 
         foreach ($users as $key => $us) {
