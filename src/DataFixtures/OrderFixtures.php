@@ -36,13 +36,13 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
             ],
         ];
 
-        foreach ($orders as $key => $data) {
+        foreach ($orders as $key => $ord) {
             $order = new Order();
-            $order->setReference($data['reference']);
-            $order->setStatus($data['status']);
-            $order->setCreateAt($data['created_at']);
+            $order->setReference($ord['reference']);
+            $order->setStatus($ord['status']);
+            $order->setCreateAt($ord['created_at']);
 
-            $user = $this->getReference($data['user_ref'], User::class);
+            $user = $this->getReference($ord['user_ref'], User::class);
             $order->setUser($user);
 
             $manager->persist($order);

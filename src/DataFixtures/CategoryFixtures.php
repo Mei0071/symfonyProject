@@ -13,9 +13,9 @@ class CategoryFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $categories = [
-            ['name' => "Violon", 'description' => "Type d'instrument à corde"],
-            ['name' => "Guitare", 'description' => "Type d'instrument à corde"],
-            ['name' => "Batterie", 'description' => "Type d'instrument à percussion"],
+            ['name' => "Vent", 'description' => "Type d'instrument à vent"],
+            ['name' => "Corde", 'description' => "Type d'instrument à corde"],
+            ['name' => "Percussion", 'description' => "Type d'instrument à percussion"],
         ];
 
         foreach ($categories as $key => $data) {
