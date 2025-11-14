@@ -15,11 +15,4 @@ class HomeRepository
         $this->registry = $registry;
     }
 
-    public function findAllCategories(): array
-    {
-        return $this->registry
-            ->getRepository(Category::class)
-            ->findAll();
-    }
-
 }

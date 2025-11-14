@@ -9,11 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController{
     #[Route('/', name: 'home')]
-    public function index(HomeRepository $homeRepository):Response{
-        $categories=$homeRepository->findAllCategories();
+    public function index():Response{
 
         return $this->render('home.html.twig',[
-            'categories'=>$categories
         ]);
     }
 }
