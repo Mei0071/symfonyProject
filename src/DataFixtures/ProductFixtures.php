@@ -16,9 +16,12 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $products = [
-            ['name' => 'Violon', 'price' => 1500, 'description' => 'Violon...', 'stock' => 10, 'category_ref' => 'Category_1','status' => StatusProduct::Disponible],
+            ['name' => 'Violon', 'price' => 1500, 'description' => 'Violon...', 'stock' => 10, 'category_ref' => 'Category_0','status' => StatusProduct::Disponible],
             ['name' => 'Guitare acoustique', 'price' => 3000, 'description' => 'Guitare ...', 'stock' => 5, 'category_ref' => 'Category_1','status' => StatusProduct::Disponible],
             ['name' => 'Batterie complète', 'price' => 3500, 'description' => 'Batterie ...', 'stock' => 2, 'category_ref' => 'Category_2','status' => StatusProduct::Disponible],
+            ['name' => 'Flutte traversière', 'price' => 3010, 'description' => 'Flute...', 'stock' => 2, 'category_ref' => 'Category_3','status' => StatusProduct::Disponible],
+            ['name' => 'Violoncelle', 'price' => 3400, 'description' => 'Violoncelle...', 'stock' => 2, 'category_ref' => 'Category_4','status' => StatusProduct::Disponible],
+            ['name' => 'Guitare electrique', 'price' => 2500, 'description' => 'Guitare ...', 'stock' => 5, 'category_ref' => 'Category_1','status' => StatusProduct::Disponible],
         ];
 
         foreach ($products as $key=>$prod) {

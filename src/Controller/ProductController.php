@@ -12,26 +12,37 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ProductController extends AbstractController
 {
     #[Route('/vent', name: 'product_vent')]
-    public function listeVent(): Response
+    public function listeVent(ProductRepository $productRepository): Response
     {
+        $categoryNames = ['Flute'];
+        $products = $productRepository->getProductsByCategories($categoryNames);
+
+
         return $this->render('product/vent_liste.html.twig', [
-            'controller_name' => 'ProductController',
+            'groupedProducts' => $products,
         ]);
     }
 
     #[Route('/corde', name: 'product_corde')]
-    public function listeCorde(): Response
+    public function listeCorde(ProductRepository $productRepository): Response
     {
+        $categoryNames = ['Violon', 'Guitare'];
+        $products = $productRepository->getProductsByCategories($categoryNames);
+
+
         return $this->render('product/corde_liste.html.twig', [
-            'controller_name' => 'ProductController',
+            'groupedProducts' => $products,
         ]);
     }
 
     #[Route('/percussion', name: 'product_percussion')]
-    public function listePercussion(): Response
+    public function listePercussion(ProductRepository $productRepository): Response
     {
+        $categoryNames = ['Batterie'];
+        $products = $productRepository->getProductsByCategories($categoryNames);
+
         return $this->render('product/percussion_liste.html.twig', [
-            'controller_name' => 'ProductController',
+            'groupedProducts' => $products,
         ]);
     }
 }

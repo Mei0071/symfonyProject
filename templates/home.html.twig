@@ -4,4 +4,8 @@
 
 {% block body %}
     <h1>Hello</h1>
+
+        {% for category in categories %}
+            {{ category.name}}
+        {% endfor %}
 {% endblock %}

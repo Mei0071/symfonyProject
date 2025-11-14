@@ -5,5 +5,16 @@
 {% block body %}
     <main>
         <h1>Nos instruments à corde</h1>
+
+        {% for category, products in groupedProducts %}
+            <h2>{{ category }}</h2>
+            <ul>
+                {% for product in products %}
+                    <li>{{ product.name }} - {{ product.price }} €</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun produit trouvé.</p>
+        {% endfor %}
     </main>
 {% endblock %}
