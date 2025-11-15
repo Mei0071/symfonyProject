@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Portail admin{% endblock %}
+
+{% block body %}
+    <h1>Page admin</h1>
+    <a href="{{ path('addProduct') }}">Ajouter un produit</a>
+    <a href="{{ path('addCategory') }}">Ajouter une catégorie</a>
+{% endblock %}

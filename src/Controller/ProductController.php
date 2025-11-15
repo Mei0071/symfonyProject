@@ -2,16 +2,18 @@
 
 namespace App\Controller;
 
+use App\Enum\StatusProduct;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-
-#[Route('/products', name: '')]
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class ProductController extends AbstractController
 {
-    #[Route('/vent', name: 'product_vent')]
+    #[Route('/products/vent', name: 'product_vent')]
     public function listeVent(ProductRepository $productRepository): Response
     {
         $categoryNames = ['Flute'];
@@ -23,7 +25,7 @@ final class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/corde', name: 'product_corde')]
+    #[Route('/products/corde', name: 'product_corde')]
     public function listeCorde(ProductRepository $productRepository): Response
     {
         $categoryNames = ['Violon', 'Guitare'];
@@ -35,7 +37,7 @@ final class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/percussion', name: 'product_percussion')]
+    #[Route('/products/percussion', name: 'product_percussion')]
     public function listePercussion(ProductRepository $productRepository): Response
     {
         $categoryNames = ['Batterie'];
@@ -43,6 +45,25 @@ final class ProductController extends AbstractController
 
         return $this->render('product/percussion_liste.html.twig', [
             'groupedProducts' => $products,
+        ]);
+    }
+
+    #[Route('/admin/product/new', name: 'addProduct')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function new(Request $request, ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
+    {
+        $statuses = StatusProduct::cases();
+        $categories=$categoryRepository->findAll();
+
+        if ($request->isMethod('POST')) {
+            $productRepository->createProduct($request->request->all(), $categoryRepository);
+            $this->addFlash('success', 'Produit ajouté !');
+            return $this->redirectToRoute('app_admin');
+        }
+
+        return $this->render('admin/addProduct.html.twig', [
+            'statuses' => $statuses,
+            'categories'=>$categories,
         ]);
     }
 }

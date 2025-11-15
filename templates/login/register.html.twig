@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="formContainer">
+    <div class="form">
+        <form method="post">
+            <label for="fName">Prénom</label>
+            <input type="text" id="fName" name="_fName" required>
+            <label for="lName">Nom</label>
+            <input type="text" id="lName" name="_lName" required>
+
+            <label for="mail">Email : </label>
+            <input type="text" id="mail" name="_mail"  required>
+
+            <label for="password">Password :</label>
+            <input type="password" id="password" name="_password" required>
+
+            <button type="submit">Enregistrer</button>
+        </form>
+        <a href={{ path('login') }}>Retour à la page de connexion</a>
+
+    </div>
+</div>
+
+{% endblock %}

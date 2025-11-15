@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout de produit{% endblock %}
+
+{% block body %}
+    <div class="formContainer">
+        <div class="form">
+            <form method="post">
+                <label for="name">Nom : </label>
+                <input type="text" id="name" name="_name"  required>
+
+                <label for="price">Price :</label>
+                <input type="number" id="price" name="_price" required>
+
+                <label for="description">Description :</label>
+                <input type="text" id="description" name="_description" required>
+
+                <label for="stock">Stock :</label>
+                <input type="number" id="stock" name="_stock" required>
+
+                <label for="status">Status :</label>
+                <select id="status" name="_status" required>
+                    {% for status in statuses %}
+                        <option value="{{ status.value }}">{{ status.name|capitalize }}</option>
+                    {% endfor %}
+                </select>
+                <a>Ajouter un status</a>
+
+                <label for="category">Catégorie :</label>
+                <select id="category" name="_category" required>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <a>Ajouter une catégorie</a>
+
+                <button type="submit">Ajouter</button>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
