@@ -1,0 +1,58 @@
+user:
+  login: "Login"
+  logout: "Logout"
+
+page:
+  home: "Home"
+  windInstrument: "Wind instrument"
+  stringInstrument: "String instrument"
+  percussionInstrument: "Percussion instrument"
+  windTitle: "Our wind instrument"
+  stringTitle: "Our string instrument"
+  percussionTitle: "Our percussion instrument"
+
+home:
+  title: "Welcome"
+  company: "The company"
+  services: "The services"
+  instrumentType: "The differents type of instrument"
+  presentation: "Synopsis of the company"
+
+form:
+  email: "Email :"
+  password: "Password :"
+  login: "Login"
+  register: "Sign up"
+  firstName: "First name :"
+  lastName: "Last name :"
+  submit: "Submit"
+  goBack: "Go back to the login page"
+  name: "Name :"
+  price: "Price :"
+  description: "Description :"
+  stock: "Stock :"
+  status: "Status :"
+  category: "Catégory :"
+  add: "Add"
+
+dashboard:
+  title: "Dashboard"
+  addProduct: "Add a product"
+  addCategory: "Add a category"
+  seeOrder: "See all Orders"
+
+addProduct:
+  title: "Add a product"
+
+addCategory:
+  title: "Add a category"
+
+seeOrder:
+  title: "Orders dashboard"
+  allOrder: "Total number of orders"
+  inPrep: "Number of orders in preparation"
+  sent: "Number of Orders being delivered"
+  deleted: "Number of cancelled orders"
+  order: "Orders"
+
+

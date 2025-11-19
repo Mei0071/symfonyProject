@@ -3,11 +3,11 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>Hello</h1>
-    <p>Texte : </p>
+    <h1>{{ 'home.title'|trans }}</h1>
+    <p>{{ 'home.presentation'|trans}} </p>
         <ul>
-            <li>Présentation entreprise</li>
-            <li>Présentation Services</li>
-            <li>Présentation Type d'instruments</li>
+            <li>{{ 'home.company'|trans }}</li>
+            <li>{{ 'home.services'|trans }}</li>
+            <li>{{ 'home.instrumentType'|trans }}</li>
         </ul>
 {% endblock %}

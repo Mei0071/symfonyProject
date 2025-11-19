@@ -4,7 +4,7 @@
 
 {% block body %}
     <main>
-        <h1>Nos instruments à percussion</h1>
+        <h1>{{ 'page.percussionTitle'|trans }}</h1>
 
         {% for category, products in groupedProducts %}
             <h2>{{ category }}</h2>

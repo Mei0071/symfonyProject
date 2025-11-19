@@ -6,20 +6,21 @@
 <div class="formContainer">
     <div class="form">
         <form method="post">
-            <label for="fName">Prénom</label>
+            <label for="fName">{{'form.firstName'|trans}}</label>
             <input type="text" id="fName" name="_fName" required>
-            <label for="lName">Nom</label>
+
+            <label for="lName">{{ 'form.lastName'|trans }}</label>
             <input type="text" id="lName" name="_lName" required>
 
-            <label for="mail">Email : </label>
+            <label for="mail">{{ 'form.email'|trans}}</label>
             <input type="text" id="mail" name="_mail"  required>
 
-            <label for="password">Password :</label>
+            <label for="password">{{ 'form.password'|trans }}</label>
             <input type="password" id="password" name="_password" required>
 
-            <button type="submit">Enregistrer</button>
+            <button type="submit">{{ 'form.submit'|trans }}</button>
         </form>
-        <a href={{ path('login') }}>Retour à la page de connexion</a>
+        <a href={{ path('login') }}>{{ 'form.goBack'|trans }}</a>
 
     </div>
 </div>

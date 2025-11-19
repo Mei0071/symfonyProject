@@ -2,15 +2,15 @@
 
 {% block title %}Commandes{% endblock %}
 {% block body %}
-    <h1>Tableau de bord des commandes</h1>
+    <h1>{{ 'seeOrder.title'|trans }}</h1>
         <ul>
-            <li>Nombres de commandes totales :...</li>
-            <li>Nombres de commandes en préparation :...</li>
-            <li>Nombres de commandes en cours de livraison :...</li>
-            <li>Nombres de commandes annulée :...</li>
+            <li>N{{ 'seeOrder.allOrder'|trans }}</li>
+            <li>{{ 'seeOrder.inPrep'|trans }}</li>
+            <li>{{ 'seeOrder.sent'|trans }}</li>
+            <li>{{ 'seeOrder.deleted'|trans }}</li>
         </ul>
 
-    <h2>Les commandes</h2>
+    <h2>{{ 'seeOrder.order'|trans }}</h2>
     {% for order in orders %}
         <li>{{ order.reference }}</li>
     {% endfor %}

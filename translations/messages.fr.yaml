@@ -1,0 +1,58 @@
+user:
+  login: "Connexion"
+  logout: "Déconexion"
+
+page:
+  home: "Accueil"
+  windInstrument: "Instruments à vent"
+  stringInstrument: "Instruments à cordes"
+  percussionInstrument: "Instruments à percussion"
+  windTitle: "Nos instruments à vent"
+  stringTitle: "Nos instruments à corde"
+  percussionTitle: "Nos instruments à percussion"
+
+home:
+  title: "Bienvenue"
+  company: "L'entreprise"
+  services: "Les services"
+  instrumentType: "Les types d'instruments"
+  presentation: "Intro entreprise"
+
+form:
+  email: "Email :"
+  password: "Mot de passe :"
+  login: "Connexion"
+  register: "Inscription"
+  firstName: "Prénom :"
+  lastName: "Nom :"
+  submit: "Enregistrer"
+  goBack: "Retour à la page de connexion"
+  name: "Nom :"
+  price: "Prix :"
+  description: "Description :"
+  stock: "Stock :"
+  status: "Status :"
+  category: "Catégorie :"
+  add: "Ajouter"
+
+dashboard:
+  title: "Tableau de bord"
+  addProduct: "Ajouter un produit"
+  addCategory: "Ajouter une catégorie"
+  seeOrder: "Voir les commandes"
+
+addProduct:
+  title: "Ajout d'un produit"
+
+addCategory:
+  title: "Ajout d'une catégorie"
+
+seeOrder:
+  title: "Tableau de bord des commandes"
+  allOrder: "Nombres totales de commandes"
+  inPrep: "Nombres de commandes en préparation"
+  sent: "Nombres de commandes en cours de livraisons"
+  deleted: "Nombres de commandes annulées"
+  order: "Les commandes"
+
+

@@ -9,16 +9,16 @@
     <div class="formContainer">
         <div class="form">
             <form action="{{ path('login') }}" method="post">
-                <label for="mail">Email : </label>
+                <label for="mail">{{ 'form.email'|trans}} </label>
                 <input type="text" id="mail" name="_mail"  required>
 
-                <label for="password">Password :</label>
+                <label for="password">{{ 'form.password'|trans }}</label>
                 <input type="password" id="password" name="_password" required>
 
-                <button type="submit">Connexion</button>
+                <button type="submit">{{ 'form.login'|trans }}</button>
             </form>
 
-            <a href={{ path('register') }}>Inscription</a>
+            <a href={{ path('register') }}>{{ 'form.register'|trans }}</a>
         </div>
     </div>
 

@@ -3,18 +3,18 @@
 {% block title %}Ajout de produit{% endblock %}
 
 {% block body %}
-    <h1>Ajout d'une catégorie</h1>
+    <h1>{{ 'addCategory.title'|trans}}</h1>
     <div class="formContainer">
         <div class="form">
             <form method="post">
-                <label for="name">Nom : </label>
+                <label for="name">{{ 'form.name :' }} </label>
                 <input type="text" id="name" name="_name"  required>
 
-                <label for="description">Description :</label>
+                <label for="description">{{ 'form.description'|trans }}</label>
                 <input type="text" id="description" name="_description" required>
 
 
-                <button type="submit">Ajouter</button>
+                <button type="submit">{{ 'form.add'|trans }}</button>
             </form>
 
         </div>

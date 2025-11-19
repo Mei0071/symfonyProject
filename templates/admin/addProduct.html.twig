@@ -3,39 +3,37 @@
 {% block title %}Ajout de produit{% endblock %}
 
 {% block body %}
-    <h1>ajout d'un produit</h1>
+    <h1>{{ 'addProduct.title'|trans }}</h1>
     <div class="formContainer">
         <div class="form">
             <form method="post">
-                <label for="name">Nom : </label>
+                <label for="name">{{ 'form.name'|trans }} </label>
                 <input type="text" id="name" name="_name"  required>
 
-                <label for="price">Price :</label>
+                <label for="price">{{ 'form.price'|trans }}</label>
                 <input type="number" id="price" name="_price" required>
 
-                <label for="description">Description :</label>
+                <label for="description">{{ 'form.description'|trans }}</label>
                 <input type="text" id="description" name="_description" required>
 
-                <label for="stock">Stock :</label>
+                <label for="stock">{{ 'form.stock'|trans }}</label>
                 <input type="number" id="stock" name="_stock" required>
 
-                <label for="status">Status :</label>
+                <label for="status">{{ 'form.status'|trans }}</label>
                 <select id="status" name="_status" required>
                     {% for status in statuses %}
                         <option value="{{ status.value }}">{{ status.name|capitalize }}</option>
                     {% endfor %}
                 </select>
-                <a>Ajouter un status</a>
 
-                <label for="category">Catégorie :</label>
+                <label for="category">{{ 'form.category'|trans }}</label>
                 <select id="category" name="_category" required>
                     {% for category in categories %}
                         <option value="{{ category.id }}">{{ category.name }}</option>
                     {% endfor %}
                 </select>
-                <a>Ajouter une catégorie</a>
 
-                <button type="submit">Ajouter</button>
+                <button type="submit">{{ 'form.add'|trans }}</button>
             </form>
 
         </div>
