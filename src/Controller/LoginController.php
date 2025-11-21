@@ -25,6 +25,9 @@ final class LoginController extends AbstractController
         ]);
     }
 
+    #[Route('/logout', name: 'logout' )]
+    public function logout(){}
+
     #[Route('/register', name: 'register' )]
     public function indexRegister(Request $request,UserRepository $userRepository, UserPasswordHasherInterface $PasswordHasher, AddressRepository $addressRepository): Response{
         if($request->isMethod('POST')){

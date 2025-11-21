@@ -21,6 +21,9 @@ security:
                 default_target_path: app_user
                 username_parameter: _mail
                 password_parameter: _password
+            logout:
+                path: logout
+                target: login
 
 
             # activate different ways to authenticate
