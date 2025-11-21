@@ -50,9 +50,19 @@ class Order
         return $this->reference;
     }
 
-    public function setReference(string $reference): static
+    /**
+     * @throws \Exception
+     */
+    public function setReference(): static
     {
-        $this->reference = $reference;
+        if (!$this->createAt) {
+            throw new \Exception("createAt doit être défini avant setReference().");
+        }
+
+        $date=$this->createAt->format('YmdHis');
+        $uniqueId = substr(uniqid('', true), -5);
+
+        $this->reference = 'CMD'.$uniqueId.$date;
 
         return $this;
     }

@@ -17,19 +17,16 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
     {
         $orders = [
             [
-                'reference' => "ab15d",
                 'status' => StatusOrder::Preparation,
                 'created_at' => new \DateTime("now"),
                 'user_ref' => "User_0"
             ],
             [
-                'reference' => "asad14",
                 'status' => StatusOrder::Annuler,
                 'created_at' => new \DateTime("2024-10-09"),
                 'user_ref' => "User_1"
             ],
             [
-                'reference' => "azda4",
                 'status' => StatusOrder::Expedier,
                 'created_at' => new \DateTime("now"),
                 'user_ref' => "User_2"
@@ -38,9 +35,10 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
 
         foreach ($orders as $key => $ord) {
             $order = new Order();
-            $order->setReference($ord['reference']);
             $order->setStatus($ord['status']);
             $order->setCreateAt($ord['created_at']);
+            $order->setReference();
+
 
             $user = $this->getReference($ord['user_ref'], User::class);
             $order->setUser($user);
