@@ -38,6 +38,7 @@ form:
   postalCode: "Postal code :"
   city: "City :"
   country: "Country :"
+  emailTaken: "This email is already used"
 
 dashboard:
   title: "Dashboard"

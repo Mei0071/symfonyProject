@@ -3,7 +3,15 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-<div class="formContainer">
+
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error|trans }}
+        </div>
+    {% endif %}
+
+
+    <div class="formContainer">
     <div class="form">
         <form method="post">
             <label for="fName">{{'form.firstName'|trans}}</label>

@@ -30,41 +30,47 @@ final class LoginController extends AbstractController
 
     #[Route('/register', name: 'register' )]
     public function indexRegister(Request $request,UserRepository $userRepository, UserPasswordHasherInterface $PasswordHasher, AddressRepository $addressRepository): Response{
+        $error = null;
+
         if($request->isMethod('POST')){
             $email=$request->request->get('_mail');
             $password=$request->request->get('_password');
             $firstName=$request->request->get('_fName');
             $lastName=$request->request->get('_lName');
 
-            $user=new User;
-            $user->setEmail($email);
-            $user->setFirstName($firstName);
-            $user->setLastName($lastName);
-            $user->setPassword($PasswordHasher->hashPassword($user,$password));
-            $user->setRoles(['ROLE_USER']);
+            $existingMail=$userRepository->findOneBy(['email'=>$email]);
+            if($existingMail){
+                $error = "form.emailTaken";
+            }else{
+                $user=new User;
+                $user->setEmail($email);
+                $user->setFirstName($firstName);
+                $user->setLastName($lastName);
+                $user->setPassword($PasswordHasher->hashPassword($user,$password));
+                $user->setRoles(['ROLE_USER']);
 
-            $userRepository->save($user,true);
+                $userRepository->save($user,true);
 
-            $street=$request->request->get('_street');
-            $postalCode=$request->request->get('_postalCode');
-            $city=$request->request->get('_city');
-            $country=$request->request->get('_country');
+                $street=$request->request->get('_street');
+                $postalCode=$request->request->get('_postalCode');
+                $city=$request->request->get('_city');
+                $country=$request->request->get('_country');
 
-            $address=new Address;
-            $address->setStreet($street);
-            $address->setPostalCode($postalCode);
-            $address->setCity($city);
-            $address->setCountry($country);
-            $address->setUser($user);
+                $address=new Address;
+                $address->setStreet($street);
+                $address->setPostalCode($postalCode);
+                $address->setCity($city);
+                $address->setCountry($country);
+                $address->setUser($user);
 
-            $addressRepository->save($address,true);
+                $addressRepository->save($address,true);
 
-            return $this->redirectToRoute('login');
+                return $this->redirectToRoute('login');
+            }
         }
-
-
-        return $this->render('login/register.html.twig');
+        return $this->render('login/register.html.twig',[
+            'error'=> $error,
+        ]);
     }
-
 
 }
