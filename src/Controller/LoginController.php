@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Address;
 use App\Entity\User;
+use App\Repository\AddressRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +26,7 @@ final class LoginController extends AbstractController
     }
 
     #[Route('/register', name: 'register' )]
-    public function indexRegister(Request $request,UserRepository $userRepository, UserPasswordHasherInterface $PasswordHasher): Response{
+    public function indexRegister(Request $request,UserRepository $userRepository, UserPasswordHasherInterface $PasswordHasher, AddressRepository $addressRepository): Response{
         if($request->isMethod('POST')){
             $email=$request->request->get('_mail');
             $password=$request->request->get('_password');
@@ -39,6 +41,20 @@ final class LoginController extends AbstractController
             $user->setRoles(['ROLE_USER']);
 
             $userRepository->save($user,true);
+
+            $street=$request->request->get('_street');
+            $postalCode=$request->request->get('_postalCode');
+            $city=$request->request->get('_city');
+            $country=$request->request->get('_country');
+
+            $address=new Address;
+            $address->setStreet($street);
+            $address->setPostalCode($postalCode);
+            $address->setCity($city);
+            $address->setCountry($country);
+            $address->setUser($user);
+
+            $addressRepository->save($address,true);
 
             return $this->redirectToRoute('login');
         }

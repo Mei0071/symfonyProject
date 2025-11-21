@@ -11,8 +11,11 @@ final class UserController extends AbstractController
     #[Route('/user', name: 'app_user')]
     public function index(): Response
     {
-        return $this->render('login/user.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
+        $user=$this->getUser();
+
+        if($user&&in_array('ROLE_ADMIN', $user->getRoles(),true)){
+            return $this->redirectToRoute('app_admin');
+        }
+        return $this->render('login/user.html.twig');
     }
 }
