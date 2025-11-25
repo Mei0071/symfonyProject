@@ -10,6 +10,8 @@ page:
   windTitle: "Our wind instrument"
   stringTitle: "Our string instrument"
   percussionTitle: "Our percussion instrument"
+  addProduct: "Add a product"
+  addCategory: "Add a category"
 
 home:
   title: "Welcome"
@@ -42,9 +44,13 @@ form:
 
 dashboard:
   title: "Dashboard"
-  addProduct: "Add a product"
-  addCategory: "Add a category"
-  seeOrder: "See all Orders"
+  reference: "Reference"
+  customer: "Customer"
+  customerID: "Customer ID"
+  date: "Date"
+  orderedItems: "Ordered Items"
+  status: "Status"
+  total: "Total"
 
 addProduct:
   title: "Add a product"
@@ -53,11 +59,10 @@ addCategory:
   title: "Add a category"
 
 seeOrder:
-  title: "Orders dashboard"
-  allOrder: "Total number of orders"
-  inPrep: "Number of orders in preparation"
-  sent: "Number of Orders being delivered"
-  deleted: "Number of cancelled orders"
-  order: "Orders"
-
+  detailed: "Details orders"
+  allOrder: "Total number of orders :"
+  inPrep: "Number of orders in preparation :"
+  delivering: "Number of orders being delivered :"
+  delivered: "Number of orders delivered :"
+  cancelled: "Number of cancelled orders :"
 

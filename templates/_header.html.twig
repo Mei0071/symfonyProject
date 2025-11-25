@@ -4,10 +4,16 @@
     <div class="header-content">
         <h1>VIBRATO</h1>
         <nav>
-            <a href="{{ path('home') }}">{{ 'page.home'|trans }}</a>
-            <a href="{{ path('product_vent') }}">{{'page.windInstrument'|trans}}</a>
-            <a href="{{ path('product_corde') }}">{{ 'page.stringInstrument'|trans }}</a>
-            <a href="{{ path('product_percussion') }}">{{ 'page.percussionInstrument'|trans }}</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_admin') }}">{{ 'page.home'|trans }}</a>
+                <a href="{{ path('addProduct') }}">{{ 'page.addProduct'|trans }}</a>
+                <a href="{{ path('addCategory') }}">{{ 'page.addCategory'|trans }}</a>
+            {% else %}
+                <a href="{{ path('home') }}">{{ 'page.home'|trans }}</a>
+                <a href="{{ path('product_vent') }}">{{'page.windInstrument'|trans}}</a>
+                <a href="{{ path('product_corde') }}">{{ 'page.stringInstrument'|trans }}</a>
+                <a href="{{ path('product_percussion') }}">{{ 'page.percussionInstrument'|trans }}</a>
+            {% endif %}
         </nav>
     </div>
 

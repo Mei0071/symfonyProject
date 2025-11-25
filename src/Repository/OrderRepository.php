@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Order;
+use App\Enum\StatusOrder;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,28 +17,22 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-    //    /**
-    //     * @return Order[] Returns an array of Order objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('o')
-    //            ->andWhere('o.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('o.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function countAll(): int
+    {
+        return (int) $this->createQueryBuilder('o')
+            ->select('COUNT(o.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 
-    //    public function findOneBySomeField($value): ?Order
-    //    {
-    //        return $this->createQueryBuilder('o')
-    //            ->andWhere('o.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function countByStatus(?StatusOrder $status=null):int{
+        $qb=$this->createQueryBuilder('o')
+            ->select('count(o.id)');
+
+        if($status){
+            $qb->where('o.status = :status')
+                ->setParameter('status',$status);
+        }
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

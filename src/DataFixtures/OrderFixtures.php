@@ -31,6 +31,11 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
                 'created_at' => new \DateTime("now"),
                 'user_ref' => "User_2"
             ],
+            [
+                'status' => StatusOrder::Livrer,
+                'created_at' => new \DateTime("now"),
+                'user_ref' => "User_3"
+            ],
         ];
 
         foreach ($orders as $key => $ord) {

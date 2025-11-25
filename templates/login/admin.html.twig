@@ -4,7 +4,47 @@
 
 {% block body %}
     <h1>{{ 'dashboard.title'|trans }}</h1>
-    <a href="{{ path('addProduct') }}">{{ 'dashboard.addProduct'|trans }}</a>
-    <a href="{{ path('addCategory') }}">{{'dashboard.addCategory'|trans}}</a>
-    <a href="{{ path('seeOrder') }}">{{ 'dashboard.seeOrder'|trans }}</a>
+
+    <ul>
+        <li>{{ 'seeOrder.allOrder'|trans }} {{ totalOrders }}</li>
+        <li>{{ 'seeOrder.inPrep'|trans }} {{ preparationOrders }}</li>
+        <li>{{ 'seeOrder.delivering'|trans }} {{ deliveringOrders }}</li>
+        <li>{{ 'seeOrder.delivered'|trans }} {{ deliveredOrders }}</li>
+        <li>{{ 'seeOrder.cancelled'|trans }} {{ cancelledOrders }}</li>
+    </ul>
+
+
+    <h2>{{ 'seeOrder.detailed'|trans }}</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>{{ 'dashboard.reference'|trans }}</th>
+            <th>{{ 'dashboard.customer'|trans }}</th>
+            <th>{{ 'dashboard.date'|trans }}</th>
+            <th>{{ 'dashboard.orderedItems'|trans }}</th>
+            <th>{{ 'dashboard.total'|trans }}</th>
+            <th>{{ 'dashboard.status'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.reference }}</td>
+                <td>{{ order.user.firstName~' '~order.user.lastName }}</td>
+                <td>{{ order.createAt|date('d/m/Y') }}</td>
+                <td>
+                    <ul>
+                        {% for item in order.orderItems %}
+                            <li>{{ item.product.name }} x {{ item.quantity }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+
+                <td>{{ order.totalPrice|number_format(2, '.', ' ') }} €</td>
+
+                <td>{{ order.status.value }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
