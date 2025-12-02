@@ -13,14 +13,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class AdminController extends AbstractController
 {
-    #[Route('/admin', name: 'app_admin')]
-    public function index(OrderRepository $orderRepository): Response
-    {
-        $orders=$orderRepository->findAll();
-        return $this->render('login/admin.html.twig', [
-            'orders' => $orders,
-        ]);
-    }
 
     #[Route('/admin', name: 'app_admin')]
     public function orderByStatus(OrderRepository $orderRepository): Response
