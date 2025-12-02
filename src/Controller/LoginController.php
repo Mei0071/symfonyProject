@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Address;
 use App\Entity\User;
+use App\Form\RegisterType;
 use App\Repository\AddressRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,48 +31,32 @@ final class LoginController extends AbstractController
     public function logout(){}
 
     #[Route('/register', name: 'register' )]
-    public function indexRegister(Request $request,UserRepository $userRepository, UserPasswordHasherInterface $PasswordHasher, AddressRepository $addressRepository): Response{
-        $error = null;
+    public function register(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        $user = new User();
+        $address = new Address();
+        $user->addAddress($address);
+        $form = $this->createForm(RegisterType::class, $user);
 
-        if($request->isMethod('POST')){
-            $email=$request->request->get('_mail');
-            $password=$request->request->get('_password');
-            $firstName=$request->request->get('_fName');
-            $lastName=$request->request->get('_lName');
+        $form->handleRequest($request);
 
-            $existingMail=$userRepository->findOneBy(['email'=>$email]);
-            if($existingMail){
-                $error = "form.emailTaken";
-            }else{
-                $user=new User;
-                $user->setEmail($email);
-                $user->setFirstName($firstName);
-                $user->setLastName($lastName);
-                $user->setPassword($PasswordHasher->hashPassword($user,$password));
-                $user->setRoles(['ROLE_USER']);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-                $userRepository->save($user,true);
+            $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($hashedPassword);
 
-                $street=$request->request->get('_street');
-                $postalCode=$request->request->get('_postalCode');
-                $city=$request->request->get('_city');
-                $country=$request->request->get('_country');
+            $em->persist($user);
+            $em->flush();
 
-                $address=new Address;
-                $address->setStreet($street);
-                $address->setPostalCode($postalCode);
-                $address->setCity($city);
-                $address->setCountry($country);
-                $address->setUser($user);
+            $this->addFlash('success', sprintf('Compte crée !'));
 
-                $addressRepository->save($address,true);
-
-                return $this->redirectToRoute('login');
-            }
+            return $this->redirectToRoute('login');
         }
-        return $this->render('login/register.html.twig',[
-            'error'=> $error,
+
+        return $this->render('login/register.html.twig', [
+            'user'=>$user,
+            'address'=>$address,
+            'form' => $form->createView(),
         ]);
     }
-
 }

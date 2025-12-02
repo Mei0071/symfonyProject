@@ -3,46 +3,16 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
 
-    {% if error %}
-        <div>
-            {{ error|trans }}
-        </div>
-    {% endif %}
+    <h1>Inscription</h1>
 
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
 
-    <div class="formContainer">
-    <div class="form">
-        <form method="post">
-            <label for="fName">{{'form.firstName'|trans}}</label>
-            <input type="text" id="fName" name="_fName" required>
-
-            <label for="lName">{{ 'form.lastName'|trans }}</label>
-            <input type="text" id="lName" name="_lName" required>
-
-            <label for="mail">{{ 'form.email'|trans}}</label>
-            <input type="text" id="mail" name="_mail"  required>
-
-            <label for="password">{{ 'form.password'|trans }}</label>
-            <input type="password" id="password" name="_password" required>
-
-            <label for="street">{{ 'form.street'|trans}}</label>
-            <input type="text" id="street" name="_street"  required>
-
-            <label for="postalCode">{{ 'form.postalCode'|trans}}</label>
-            <input type="text" id="postalCode" name="_postalCode"  required>
-
-            <label for="city">{{ 'form.city'|trans}}</label>
-            <input type="text" id="city" name="_city"  required>
-
-            <label for="country">{{ 'form.country'|trans}}</label>
-            <input type="text" id="country" name="_country"  required>
-
-            <button type="submit">{{ 'form.submit'|trans }}</button>
-        </form>
-        <a href={{ path('login') }}>{{ 'form.goBack'|trans }}</a>
-
-    </div>
-</div>
-
+    <a href="{{ path('login') }}">Retour</a>
 {% endblock %}

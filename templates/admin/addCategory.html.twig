@@ -3,21 +3,14 @@
 {% block title %}Ajout de produit{% endblock %}
 
 {% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
     <h1>{{ 'addCategory.title'|trans}}</h1>
-    <div class="formContainer">
-        <div class="form">
-            <form method="post">
-                <label for="name">{{ 'form.name' |trans}} </label>
-                <input type="text" id="name" name="_name"  required>
 
-                <label for="description">{{ 'form.description'|trans }}</label>
-                <input type="text" id="description" name="_description" required>
-
-
-                <button type="submit">{{ 'form.add'|trans }}</button>
-            </form>
-
-        </div>
-    </div>
-
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
 {% endblock %}

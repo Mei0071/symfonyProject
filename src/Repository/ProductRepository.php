@@ -34,21 +34,6 @@ class ProductRepository extends ServiceEntityRepository
 
         return $grouped;
     }
-    public function createProduct(array $data,CategoryRepository $categoryRepository, bool $flush = true): Product
-    {
-        $product = new Product();
-        $product->setName($data['_name']);
-        $product->setPrice($data['_price']);
-        $product->setDescription($data['_description']);
-        $product->setStock($data['_stock']);
-        $product->setStatus(StatusProduct::from($data['_status']));
-        $category = $categoryRepository->find($data['_category']);
-        $product->setCategory($category);
-
-        $this->save($product, $flush);
-
-        return $product;
-    }
 
     public function save(Product $product, bool $flush=true):void
     {

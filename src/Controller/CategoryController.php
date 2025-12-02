@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,16 +16,25 @@ final class CategoryController extends AbstractController
 {
     #[Route('/admin/category/new', name: 'addCategory')]
     #[IsGranted('ROLE_ADMIN')]
-    public function new(Request $request, CategoryRepository $categoryRepository): Response
+    public function new(Request $request, EntityManagerInterface $em): Response
     {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
 
-        if ($request->isMethod('POST')) {
-            $categoryRepository->createCategory($request->request->all());
-            $this->addFlash('success', 'Catégorie ajouté !');
-            return $this->redirectToRoute('app_admin');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($category);
+            $em->flush();
+
+            $this->addFlash('success', sprintf('Categorie "%s" ajoutée !', $category->getName()));
+
+            return $this->redirectToRoute('addCategory');
+
         }
-
         return $this->render('admin/addCategory.html.twig', [
+            'category'=>$category,
+            'form'=>$form->createView(),
         ]);
     }
 }

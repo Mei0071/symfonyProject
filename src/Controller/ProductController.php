@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Enum\StatusProduct;
+use App\Form\ProductType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,22 +51,28 @@ final class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/product/new', name: 'addProduct')]
+    #[Route('/admin/product/new', name: 'addProduct', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function new(Request $request, ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
+    public function new(Request $request, EntityManagerInterface $em): Response
     {
-        $statuses = StatusProduct::cases();
-        $categories=$categoryRepository->findAll();
+        $product = new Product();
+        $form = $this->createForm(ProductType::class, $product);
 
-        if ($request->isMethod('POST')) {
-            $productRepository->createProduct($request->request->all(), $categoryRepository);
-            $this->addFlash('success', 'Produit ajouté !');
-            return $this->redirectToRoute('app_admin');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($product);
+            $em->flush();
+
+            $this->addFlash('success', sprintf('Produit "%s" ajouté !', $product->getName()));
+
+            return $this->redirectToRoute('addProduct');
         }
 
         return $this->render('admin/addProduct.html.twig', [
-            'statuses' => $statuses,
-            'categories'=>$categories,
+            'product'=>$product,
+            'form'=>$form->createView(),
         ]);
     }
+
 }
