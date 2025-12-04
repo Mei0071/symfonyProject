@@ -21,40 +21,36 @@ class ProductType extends AbstractType{
     {
         $builder
             ->add('name', TextType::class,[
-                'label' => 'Nom du produit',
+                'label' => 'form.name',
                 'constraints'=> [new Assert\NotBlank(),]
             ])
             ->add('price',MoneyType::class,[
-                'label' => 'Prix',
+                'label' => 'form.price',
                 'constraints'=>[new Assert\NotBlank(), new Assert\Positive(),]
             ])
             ->add('description', TextType::class,[
-                'label' => 'Description',
-                'constraints'=> [new Assert\NotBlank(),]
-            ])
-            ->add('description', TextType::class,[
-                'label' => 'Description',
+                'label' => 'form.description',
                 'constraints'=> [new Assert\NotBlank(),]
             ])
             ->add('stock', NumberType::class, [
-                'label' => 'Stock',
+                'label' => 'form.stock',
                 'constraints'=> [new Assert\NotBlank(), new Assert\PositiveOrZero(),]
             ])
             ->add('status', ChoiceType::class, [
-                'label' => 'Statut',
+                'label' => 'form.status',
                 'choices' => StatusProduct::cases(),
                 'choice_label'=>fn(StatusProduct $s)=>$s->value,
                 'choice_value'=>fn(?StatusProduct $s) => $s?->value,
                 'constraints'=> [new Assert\NotBlank(),]
             ])
             ->add('category', EntityType::class, [
-                'label'=>'Catégorie',
+                'label'=>'form.category',
                 'class'=>Category::class,
                 'choice_label'=>'name',
-                'placeholder'=>'Sélectionné une catégorie'
+                'placeholder'=>'form.placeHolderCategory',
             ])
             ->add('save',SubmitType::class,[
-                'label'=>'Enregistrer',
+                'label'=>'form.add',
             ]);
     }
 

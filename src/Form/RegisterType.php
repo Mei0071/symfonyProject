@@ -18,22 +18,22 @@ class RegisterType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options):void{
         $builder
             ->add('FirstName', TextType::class,[
-                'label'=>'Prénom',
+                'label'=>'form.firstName',
                 'constraints'=>[new Assert\NotBlank()],
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'form.lastName',
                 'constraints' => [new Assert\NotBlank()],
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => 'form.email',
                 'constraints' => [
                     new Assert\NotBlank(),
                     new Assert\Email(),
                 ],
             ])
             ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe',
+                'label' => 'form.password',
                 'constraints' => [
                     new Assert\NotBlank(),
                 ],
@@ -44,7 +44,7 @@ class RegisterType extends AbstractType{
                 'by_reference' => false,
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer',
+                'label' => 'form.submit',
             ]);
     }
     public function configureOptions(OptionsResolver $resolver): void

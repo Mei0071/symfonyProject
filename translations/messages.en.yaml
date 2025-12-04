@@ -1,3 +1,5 @@
+back: "Back"
+
 user:
   login: "Login"
   logout: "Logout"
@@ -34,13 +36,14 @@ form:
   description: "Description :"
   stock: "Stock :"
   status: "Status :"
-  category: "Catégory :"
+  category: "Category :"
   add: "Add"
   street: "Street :"
   postalCode: "Postal code :"
   city: "City :"
   country: "Country :"
   emailTaken: "This email is already used"
+  placeHolderCategory: "Select a category"
 
 dashboard:
   title: "Dashboard"

@@ -15,15 +15,15 @@ class CategoryType extends AbstractType{
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom de la catégorie',
+                'label' => 'form.category',
                 'constraints' => [new Assert\NotBlank(),]
             ])
             ->add('description', TextType::class,[
-                'label' => 'Description',
+                'label' => 'form.description',
                 'constraints'=> [new Assert\NotBlank(),]
             ])
             ->add('save',SubmitType::class,[
-                'label'=>'Enregistrer',
+                'label'=>'form.add',
             ]);
     }
 

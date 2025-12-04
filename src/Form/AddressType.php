@@ -16,19 +16,19 @@ class AddressType extends AbstractType
     {
         $builder
             ->add('street', TextType::class, [
-                'label' => 'Rue',
+                'label' => 'form.street',
                 'constraints' => [new Assert\NotBlank()],
             ])
             ->add('postalCode', IntegerType::class, [
-                'label' => 'Code postal',
+                'label' => 'form.postalCode',
                 'constraints' => [new Assert\NotBlank(),new Assert\Positive(message: 'Le code postal doit être un nombre positif.'),],
             ])
             ->add('city', TextType::class, [
-                'label' => 'Ville',
+                'label' => 'form.city',
                 'constraints' => [new Assert\NotBlank()],
             ])
             ->add('country', TextType::class, [
-                'label' => 'Pays',
+                'label' => 'form.country',
                 'constraints' => [new Assert\NotBlank()],
             ]);
     }
