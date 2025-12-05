@@ -20,6 +20,10 @@ class OrderItemFixtures extends Fixture implements DependentFixtureInterface{
             ['quantity'=>1,'product_ref'=>"Product_0",'order_ref'=>"Order_2"],
             ['quantity'=>1,'product_ref'=>"Product_2",'order_ref'=>"Order_2"],
             ['quantity'=>5,'product_ref'=>"Product_5",'order_ref'=>"Order_3"],
+            ['quantity'=>5,'product_ref'=>"Product_5",'order_ref'=>"Order_4"],
+            ['quantity'=>5,'product_ref'=>"Product_5",'order_ref'=>"Order_5"],
+            ['quantity'=>1,'product_ref'=>"Product_2",'order_ref'=>"Order_6"],
+            ['quantity'=>1,'product_ref'=>"Product_2",'order_ref'=>"Order_4"],
         ];
 
         foreach ($orderItem as $key => $item){

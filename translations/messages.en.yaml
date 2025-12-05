@@ -62,10 +62,15 @@ addCategory:
   title: "Add a category"
 
 seeOrder:
-  detailed: "Details orders"
+  detailed: "Details of the last 5 orders"
   allOrder: "Total number of orders :"
   inPrep: "Number of orders in preparation :"
   delivering: "Number of orders being delivered :"
   delivered: "Number of orders delivered :"
   cancelled: "Number of cancelled orders :"
 
+product:
+  product: "Product"
+  name: "Product's name"
+  stock: "Stock available"
+  status: "Product's status"

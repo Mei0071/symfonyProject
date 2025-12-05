@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Portail admin{% endblock %}
+
+{% block body %}
+    <h1>{{ 'Produits'|trans }}</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>{{ 'product.name'|trans }}</th>
+            <th>{{ 'product.stock'|trans }}</th>
+            <th>{{ 'product.status'|trans }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.stock }}</td>
+                <td>{{ product.status.value }}</td>
+
+                <td><a href="{{ path('addProduct') }}">{{ 'page.addProduct'|trans }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

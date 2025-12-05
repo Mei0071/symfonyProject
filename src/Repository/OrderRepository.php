@@ -17,12 +17,19 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
+    public function lastOrders(int $numberOrders): array{
+        $qb= $this->createQueryBuilder('o')
+            ->orderBy('o.createAt', 'DESC')
+            ->setMaxResults($numberOrders);
+
+        return $qb->getQuery()->getResult();
+    }
     public function countAll(): int
     {
-        return (int) $this->createQueryBuilder('o')
-            ->select('COUNT(o.id)')
-            ->getQuery()
-            ->getSingleScalarResult();
+        $qb = $this->createQueryBuilder('o')
+            ->select('Count(o.id)');
+
+        return $qb->getQuery()->getSingleScalarResult();
     }
 
     public function countByStatus(?StatusOrder $status=null):int{

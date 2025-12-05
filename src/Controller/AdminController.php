@@ -17,7 +17,7 @@ final class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function orderByStatus(OrderRepository $orderRepository): Response
     {
-        $orders = $orderRepository->findAll();
+        $orders = $orderRepository->lastOrders(5);
 
         $totalOrders = $orderRepository->countAll();
         $preparationOrders = $orderRepository->countByStatus(StatusOrder::Preparation);
@@ -32,6 +32,14 @@ final class AdminController extends AbstractController
             'deliveringOrders' => $deliveringOrders,
             'deliveredOrders' => $deliveredOrders,
             'cancelledOrders' => $cancelledOrders,
+        ]);
+    }
+    #[Route('/admin/product', name: 'adminProduct')]
+    public function allProduct(ProductRepository $productRepository): Response
+    {
+        $products = $productRepository->getAllProduct();
+        return $this->render('admin/product.html.twig', [
+            'products' => $products,
         ]);
     }
 }

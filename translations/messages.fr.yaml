@@ -63,10 +63,16 @@ addCategory:
   title: "Ajout d'une catégorie"
 
 seeOrder:
-  detailed: "Tableau de bord des commandes"
+  detailed: "Tableau de bord 5 dernières des commandes"
   allOrder: "Nombres totales de commandes :"
   inPrep: "Nombres de commandes en préparation :"
   delivering: "Nombres de commandes en cours de livraisons :"
   delivered: "Nombres de commandes livrées :"
   cancelled: "Nombres de commandes annulées :"
+
+product:
+  product: "Produit"
+  name: "Nom du produit"
+  stock: "Stock disponible"
+  status: "Status du produit"
 

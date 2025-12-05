@@ -6,7 +6,7 @@
         <nav>
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('app_admin') }}">{{ 'page.home'|trans }}</a>
-                <a href="{{ path('addProduct') }}">{{ 'page.addProduct'|trans }}</a>
+                <a href="{{ path('adminProduct') }}">{{ 'product.product'|trans }}</a>
                 <a href="{{ path('addCategory') }}">{{ 'page.addCategory'|trans }}</a>
             {% else %}
                 <a href="{{ path('home') }}">{{ 'page.home'|trans }}</a>

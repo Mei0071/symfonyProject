@@ -27,6 +27,16 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
                 'user_ref' => "User_1"
             ],
             [
+                'status' => StatusOrder::Preparation,
+                'created_at' => new \DateTime("2023-10-09"),
+                'user_ref' => "User_3"
+            ],
+            [
+                'status' => StatusOrder::Expedier,
+                'created_at' => new \DateTime("2022-10-09"),
+                'user_ref' => "User_0"
+            ],
+            [
                 'status' => StatusOrder::Expedier,
                 'created_at' => new \DateTime("now"),
                 'user_ref' => "User_2"
@@ -35,6 +45,11 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
                 'status' => StatusOrder::Livrer,
                 'created_at' => new \DateTime("now"),
                 'user_ref' => "User_3"
+            ],
+            [
+                'status' => StatusOrder::Annuler,
+                'created_at' => new \DateTime("2022-10-09"),
+                'user_ref' => "User_1"
             ],
         ];
 
