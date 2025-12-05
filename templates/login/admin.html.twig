@@ -8,11 +8,14 @@
         <h2>{{ 'dashboard.generalInformation'|trans}} </h2>
         <ul>
             <li>{{ 'dashboard.numberOfProduct'|trans }}{{ numberOfProducts }}</li>
+            <br>
             <li>{{ 'seeOrder.allOrder'|trans }} {{ totalOrders }}</li>
             <li>{{ 'seeOrder.inPrep'|trans }} {{ preparationOrders }}</li>
             <li>{{ 'seeOrder.delivering'|trans }} {{ deliveringOrders }}</li>
             <li>{{ 'seeOrder.delivered'|trans }} {{ deliveredOrders }}</li>
             <li>{{ 'seeOrder.cancelled'|trans }} {{ cancelledOrders }}</li>
+            <br>
+            <li>{{ 'dashboard.totalAmount'|trans }}{{ totalAmount|number_format(2, '.', ' ') }} €</li>
         </ul>
     </section>
 

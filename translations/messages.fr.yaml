@@ -57,6 +57,7 @@ dashboard:
   total: "Total"
   generalInformation: "Informations générales"
   numberOfProduct: "Nombre de produits : "
+  totalAmount: "Total vendus des commandes livrées : "
 
 addProduct:
   title: "Ajout d'un produit"

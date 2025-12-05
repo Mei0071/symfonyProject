@@ -42,4 +42,14 @@ class OrderRepository extends ServiceEntityRepository
         }
         return $qb->getQuery()->getSingleScalarResult();
     }
+
+    public function getTotalAmount():float{
+        $qb=$this->createQueryBuilder('o')
+            ->select('SUM(orderItems.productPrice*orderItems.quantity)')
+            ->join('o.orderItems', 'orderItems')
+            ->where('o.status = :status')
+            ->setParameter('status',StatusOrder::Livrer);
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }
