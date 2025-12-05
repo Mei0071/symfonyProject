@@ -23,6 +23,12 @@ class ProductRepository extends ServiceEntityRepository
 
     }
 
+    public function getnumberOfProduct():int{
+        $qb=$this->createQueryBuilder('p')
+            ->select('count(p.id)');
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
     public function getProductsByCategories(array $categoryNames): array
     {
         $products = $this->createQueryBuilder('p')

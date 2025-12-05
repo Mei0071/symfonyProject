@@ -54,6 +54,8 @@ dashboard:
   orderedItems: "Ordered Items"
   status: "Status"
   total: "Total"
+  generalInformation: "General informations"
+  numberOfProduct: "Number of product : "
 
 addProduct:
   title: "Add a product"

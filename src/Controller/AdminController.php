@@ -15,8 +15,9 @@ final class AdminController extends AbstractController
 {
 
     #[Route('/admin', name: 'app_admin')]
-    public function orderByStatus(OrderRepository $orderRepository): Response
+    public function orderByStatus(OrderRepository $orderRepository, ProductRepository $productRepository): Response
     {
+        $numberOfProducts=$productRepository->getnumberOfProduct();
         $orders = $orderRepository->lastOrders(5);
 
         $totalOrders = $orderRepository->countAll();
@@ -26,6 +27,7 @@ final class AdminController extends AbstractController
         $cancelledOrders = $orderRepository->countByStatus(StatusOrder::Annuler);
 
         return $this->render('login/admin.html.twig', [
+            'numberOfProducts' => $numberOfProducts,
             'orders' => $orders,
             'totalOrders' => $totalOrders,
             'preparationOrders' => $preparationOrders,
