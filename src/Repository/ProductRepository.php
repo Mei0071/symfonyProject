@@ -19,7 +19,7 @@ class ProductRepository extends ServiceEntityRepository
 
     function getAllProduct():array
     {
-        return $this->findAll();
+        return $this->findBy([], ['name' => 'ASC']);
 
     }
 
